@@ -1,0 +1,24 @@
+{
+  "name": "doorapp-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Usman2661/DoorApp-Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Usman2661/DoorApp-Backend/issues"
+  },
+  "homepage": "https://github.com/Usman2661/DoorApp-Backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.7.12"
+  }
+}
