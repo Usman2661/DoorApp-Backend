@@ -4,10 +4,8 @@ const mongoose = require('mongoose');
 const path = require("path");
 const userRoutes = require ("./routes/user")
 
-
 const app = express();
 app.use(bodyParser.json());
-
 
 mongoose.connect("mongodb+srv://dooruser:pakistan2546@doormaintainance-z2i7d.mongodb.net/test?retryWrites=true&w=majority")
 .then(() => {
@@ -26,10 +24,6 @@ app.use((req,res,next) => {
   next();
 });
 
-// app.use("/api/posts", postsRoutes );
 app.use("/api/user", userRoutes );
-// app.use((req , res , next) => {
-//   res.sendFile(path.join(__dirname,"angular", "index.html"));
-// });
 
 module.exports = app;
