@@ -50,7 +50,9 @@ exports.getUser = (req,res,next) => {
         res.status(200).json({
             message:"Success",
             userId: fetcheduser._id,
-            email:fetcheduser.email
+            email:fetcheduser.email,
+            usertype:fetcheduser.usertype,
+            name:fetcheduser.name
           });
     })
     .catch(err  => {
