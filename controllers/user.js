@@ -24,8 +24,6 @@ exports.createUser = (req,res,next) => {
     })
 }
 
-
-
 exports.getUser = (req,res,next) => {
     email = req.body.email;
     password = req.body.password;
@@ -61,4 +59,20 @@ exports.getUser = (req,res,next) => {
           });
     })
  
+}
+
+exports.getUsers = (req,res, next) => {
+
+    Users.find()
+    .then( users => {
+        res.status(200).json({
+            users:users
+          });
+    })
+    .catch(err=>{
+        res.status(500).json({
+            error:err
+          });
+    })
+
 }
