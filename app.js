@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require ('body-parser');
 const mongoose = require('mongoose');
 const path = require("path");
-const userRoutes = require ("./routes/user")
+const userRoutes = require ("./routes/user");
+const siteRoutes = require ("./routes/site");
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -25,5 +27,6 @@ app.use((req,res,next) => {
 });
 
 app.use("/api/user", userRoutes );
+app.use("/api", siteRoutes );
 
 module.exports = app;
