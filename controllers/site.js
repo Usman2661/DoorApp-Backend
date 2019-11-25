@@ -23,3 +23,17 @@ exports.createSite = (req,res,next ) => {
       });
     })
 }
+
+exports.getSites = (req,res,next) => {
+    Sites.find()
+    .then(site =>{
+        res.status(200).json({
+            sites: site
+      });
+    })
+    .catch(error=> {
+        res.status(500).json({
+            error: error
+      });
+    })
+}
