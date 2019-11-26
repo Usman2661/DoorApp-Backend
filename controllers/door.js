@@ -3,7 +3,7 @@ Doors = require("../models/door");
 exports.createDoor = (req,res,next) => {
 
     const door = new Doors({
-        BuildingID: req.body.BuildingID,
+        SiteID: req.body.SiteID,
         DoorName:req.body.DoorName,
         DoorLocation:req.body.DoorLocation,
         DateTimeCreated:req.body.DateTimeCreated
