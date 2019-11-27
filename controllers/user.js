@@ -70,9 +70,10 @@ exports.getUser = (req,res,next) => {
  
 }
 
-exports.getUsers = (req,res, next) => {
+exports.getSingleUser = (req,res, next) => {
 
-    Users.find()
+    const id = req.body.id;
+    Users.findById(id)
     .then( users => {
         res.status(200).json({
             users:users
