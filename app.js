@@ -18,7 +18,6 @@ mongoose.connect("mongodb+srv://dooruser:pakistan2546@doormaintainance-z2i7d.mon
   console.log(error);
 });
 
-
 app.use((req,res,next) => {
   res.setHeader("Access-Control-Allow-Origin","*");
   res.setHeader("Access-Control-Allow-Headers","Origin , X-Requested-With, Content-Type, Accept , Authorization");
