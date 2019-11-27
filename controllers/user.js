@@ -1,5 +1,6 @@
-Users = require('../models/user');
+const Users = require('../models/user');
 var bcrypt = require('bcryptjs');
+const jwt = require("jsonwebtoken");
 
 exports.createUser = (req,res,next) => {    
     var user = new Users();
@@ -11,7 +12,7 @@ exports.createUser = (req,res,next) => {
         user.usertype = req.body.usertype;
     })
     user.save()
-    .then(result => {
+    .then(result => {        
         res.status(201).json({
             message: 'User Created!', 
             result: result
@@ -47,8 +48,14 @@ exports.getUser = (req,res,next) => {
                 message: 'Invalid Credentials',
           });
         }
+        const token = jwt.sign({email: fetcheduser.email , userId: fetcheduser._id},
+            'WinterIsComingGOT2019' ,
+            {expiresIn: '1h'}
+         );
+
         res.status(200).json({
             message:"Success",
+            token:token,
             userId: fetcheduser._id,
             email:fetcheduser.email,
             usertype:fetcheduser.usertype,

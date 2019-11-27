@@ -1,7 +1,6 @@
 Sites = require('../models/site');
 
 exports.createSite = (req,res,next ) => {
-
     const site = new Sites({
         SiteName: req.body.SiteName,
         SiteAddressLine1:req.body.SiteAddressLine1,
@@ -9,7 +8,7 @@ exports.createSite = (req,res,next ) => {
         PostCode:req.body.PostCode,
         City:req.body.City
     });
-
+    
     site.save()
     .then(result => {
         res.status(201).json({
@@ -23,7 +22,6 @@ exports.createSite = (req,res,next ) => {
       });
     })
 }
-
 exports.getSites = (req,res,next) => {
     Sites.find()
     .then(site =>{
