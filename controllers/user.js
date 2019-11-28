@@ -72,7 +72,7 @@ exports.getUser = (req,res,next) => {
 
 exports.getSingleUser = (req,res, next) => {
 
-    const id = req.body.id;
+    const id = req.query.id;
     Users.findById(id)
     .then( users => {
         res.status(200).json({
