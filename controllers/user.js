@@ -86,3 +86,27 @@ exports.getSingleUser = (req,res, next) => {
     })
 
 }
+
+
+exports.updateUser = (req,res, next) => {
+
+    const file = req.file;
+    const id = req.body.id;
+    const name = req.body.name;
+    const email = req.body.email;
+
+    const location = "http://localhost:3000/uploads/"+file.filename;
+
+    Users.updateOne({'_id': id },
+    {$set :{"name":name , "email":email, 'image':location}})
+    .then(user => {
+        res.status(200).json({
+                    user:user
+            });
+    })
+     .catch(err=>{
+        res.status(500).json({
+            error:err
+          });
+    })
+}
