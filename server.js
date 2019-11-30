@@ -1,18 +1,18 @@
 const app = require("./app");
 const debug = require("debug")("node-angular");
 const http = require("http");
-
+var express = require('express');
 
 const normalizePort = val => {
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
-    // named pipe
+
     return val;
   }
 
   if (port >= 0) {
-    // port number
+
     return port;
   }
 
@@ -46,6 +46,8 @@ const onListening = () => {
 
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
+
+app.use(express.static('public'));
 
 const server = http.createServer(app);
 server.on("error", onError);
