@@ -1,12 +1,14 @@
 Sites = require('../models/site');
 
 exports.createSite = (req,res,next ) => {
+
     const site = new Sites({
         SiteName: req.body.SiteName,
         SiteAddressLine1:req.body.SiteAddressLine1,
         SiteAddressLine2:req.body.SiteAddressLine2,
         PostCode:req.body.PostCode,
-        City:req.body.City
+        City:req.body.City,
+        Image: "http://localhost:3000/uploads/" + req.file.filename
     });
     
     site.save()
