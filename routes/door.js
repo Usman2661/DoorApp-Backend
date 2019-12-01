@@ -4,5 +4,6 @@ const DoorController = require ("../controllers/door");
 const checkAuth = require("../middleware/checkAuth");
 
 router.post("/door" , checkAuth, DoorController.createDoor);
+router.get("/doors" , checkAuth, DoorController.getDoors);
 
 module.exports = router;
