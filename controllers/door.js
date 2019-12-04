@@ -42,3 +42,20 @@ exports.getDoors = (req,res,next) => {
 
 }
 
+exports.deleteDoor = (req,res,next) => {
+
+    id = req.body.id;
+    Doors.deleteOne({_id:id})
+    .then(door =>{
+        res.status(200).json({
+            doors: door
+      });
+    })
+    .catch(error=> {
+        res.status(500).json({
+            error: error
+      });
+    })
+
+}
+
