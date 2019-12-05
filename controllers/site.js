@@ -37,3 +37,17 @@ exports.getSites = (req,res,next) => {
       });
     })
 }
+
+exports.totalSites = (req,res, next) => {
+    Sites.count()
+    .then(count => {
+        res.status(200).json({
+                    sites:count
+            });
+    })
+     .catch(err=>{
+        res.status(500).json({
+            error:err
+          });
+    })
+}

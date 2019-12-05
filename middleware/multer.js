@@ -12,5 +12,10 @@ const diskStorageToUploads = multer.diskStorage({
 const saveToUploads = multer({storage: diskStorageToUploads });
 
 module.exports = {
-    saveToUploads: saveToUploads.single('file')
+    // try {
+        saveToUploads: saveToUploads.single('file')
+    // }
+    // catch(error){
+    //     console.log(error);
+    // }
 }

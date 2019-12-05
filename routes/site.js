@@ -6,5 +6,7 @@ const uploadImage = require("../middleware/multer");
 
 router.post("/site" , checkAuth , uploadImage.saveToUploads, SiteController.createSite);
 router.get("/sites" , checkAuth , SiteController.getSites);
+router.get("/totalsites" , checkAuth , SiteController.totalSites);
+
 
 module.exports = router;

@@ -110,3 +110,18 @@ exports.updateUser = (req,res, next) => {
           });
     })
 }
+
+exports.totalUsers = (req,res, next) => {
+
+    Users.count()
+    .then(count => {
+        res.status(200).json({
+                    users:count
+            });
+    })
+     .catch(err=>{
+        res.status(500).json({
+            error:err
+          });
+    })
+}
