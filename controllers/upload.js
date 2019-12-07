@@ -1,8 +1,10 @@
 const fs = require('fs');
 const AWS = require('aws-sdk');
+DoorDocument = require("../models/doorDocuments");
 
 exports.uploadFile = (req,res,next) => {
 
+    console.log(req.body);
     console.log(req.files.document.path);
 
 
@@ -36,23 +38,31 @@ exports.uploadFile = (req,res,next) => {
                     error: s3Err 
                 });
              }
-             else{
+            if (data){
 
                 fs.unlink(myfile, function (err) {
                     if (err) throw err;
-                    // if no error, file has been deleted successfully
                     console.log('File deleted!');
                 }); 
 
-                res.status(201).json({
-                    message: 'File Uploaded!', 
-                    data: data,
-                    location:data.Location
-                });
-             }
+                const locationUrl = data.Location;
+                let newDoorDocument = new DoorDocument({ ...req.body, Document: locationUrl });
+                newDoorDocument.save()
+                    .then(result => {
+                        res.status(201).json({
+                            message: 'Document Added!', 
+                            result: result
+                      });
+                    })
+                    .catch(error => {
+                        res.status(500).json({
+                            error:error
+                      });
+                    })
 
-            //  console.log(`File uploaded successfully at ${data.Location}`)
+            }
          });
+     
       });
     };
 
