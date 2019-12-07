@@ -6,7 +6,7 @@ const imageUpload = require("../middleware/multer");
 
 router.post("/register" , UserController.createUser);
 router.post("/login" , UserController.getUser);
-router.get("/users" , checkAuth,UserController.totalUsers);
+router.get("/totalUsers" , checkAuth,UserController.totalUsers);
 router.get("/user" , checkAuth,  UserController.getSingleUser);
 router.put("/update" , checkAuth, imageUpload.saveToUploads , UserController.updateUser);
 
