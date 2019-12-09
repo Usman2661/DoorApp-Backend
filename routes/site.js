@@ -8,6 +8,6 @@ router.post("/site" , checkAuth , uploadImage.saveToUploads, SiteController.crea
 router.get("/sites" , checkAuth , SiteController.getSites);
 router.get("/totalsites" , checkAuth , SiteController.totalSites);
 router.get("/sitedoors" , checkAuth , SiteController.getSiteDoors);
-
+router.get("/site" , checkAuth , SiteController.getSite);
 
 module.exports = router;

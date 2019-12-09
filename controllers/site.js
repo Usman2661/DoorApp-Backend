@@ -69,3 +69,19 @@ exports.getSiteDoors = (req,res,next) => {
       });
     })
 }
+
+exports.getSite = (req,res,next) => {
+ 
+    const id = req.query.id;
+    Sites.find({_id:id})
+    .then(Site =>{
+        res.status(200).json({
+            Site: Site
+      });
+    })
+    .catch(error=> {
+        res.status(500).json({
+            error: error
+      });
+    })
+}
