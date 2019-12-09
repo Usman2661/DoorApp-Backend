@@ -9,7 +9,7 @@ const doorRoutes = require ("./routes/door");
 const app = express();
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb+srv://dooruser:pakistan2546@doormaintainance-z2i7d.mongodb.net/test?retryWrites=true&w=majority")
+mongoose.connect("mongodb://dooruser:pakistan2546@doormaintainance-shard-00-00-z2i7d.mongodb.net:27017,doormaintainance-shard-00-01-z2i7d.mongodb.net:27017,doormaintainance-shard-00-02-z2i7d.mongodb.net:27017/test?ssl=true&replicaSet=DoorMaintainance-shard-0&authSource=admin&retryWrites=true&w=majority")
 .then(() => {
   console.log('Connected to the database!!!');
 })

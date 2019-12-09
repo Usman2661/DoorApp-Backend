@@ -1,4 +1,6 @@
 Sites = require('../models/site');
+Doors = require('../models/door');
+
 
 exports.createSite = (req,res,next ) => {
 
@@ -49,5 +51,21 @@ exports.totalSites = (req,res, next) => {
         res.status(500).json({
             error:err
           });
+    })
+}
+
+exports.getSiteDoors = (req,res,next) => {
+ 
+    const id = req.query.id;
+    Doors.find({SiteID:id})
+    .then(Doors =>{
+        res.status(200).json({
+            Doors: Doors
+      });
+    })
+    .catch(error=> {
+        res.status(500).json({
+            error: error
+      });
     })
 }

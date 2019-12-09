@@ -8,11 +8,10 @@ exports.createDoor = (req,res,next) => {
         SiteID: req.body.SiteID,
         DoorName:req.body.DoorName,
         DoorLocation:req.body.DoorLocation,
-        DateTimeCreated:req.body.DateTimeCreated
+        DateTimeCreated:req.body.DateTimeCreated,
+        Image: "http://localhost:3000/uploads/" + req.file.filename
         });
-
         door.save()
-
         .then(result => {
             res.status(201).json({
                 message: 'Door Created!', 

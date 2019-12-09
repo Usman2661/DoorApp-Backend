@@ -39,7 +39,7 @@ exports.uploadFile = (req,res,next) => {
                 });
              }
             if (data){
-
+                
                 fs.unlink(myfile, function (err) {
                     if (err) throw err;
                     console.log('File deleted!');
