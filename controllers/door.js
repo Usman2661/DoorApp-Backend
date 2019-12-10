@@ -1,6 +1,7 @@
 Doors = require("../models/door");
+Sites = require("../models/site");
 DoorDocument = require("../models/doorDocuments");
-
+const mongoose = require('mongoose');
 
 exports.createDoor = (req,res,next) => {
 
@@ -27,11 +28,19 @@ exports.createDoor = (req,res,next) => {
 }
 exports.getDoors = (req,res,next) => {
 
-    Doors.find()
-    .then(door =>{
-        res.status(200).json({
+    Doors.aggregate([{
+        $lookup:
+            {
+                from: 'sites',
+                localField: {$toObjectId: '$SiteID'},	
+                foreignField: '_id',
+                as: 'Door_Site'
+            }
+        }])
+         .then(door =>{
+            res.status(200).json({
             doors: door
-      });
+          });
     })
     .catch(error=> {
         res.status(500).json({

@@ -10,7 +10,7 @@ var multipartyMiddleware = multiparty({
 });
 
 router.post("/door" , checkAuth,uploadImage.saveToUploads, DoorController.createDoor);
-router.get("/doors" , checkAuth, DoorController.getDoors);
+router.get("/doors" , DoorController.getDoors);
 router.delete("/door" , checkAuth, DoorController.deleteDoor);
 router.get("/door" , checkAuth, DoorController.getDoor);
 router.post("/DoorDocument" , DoorController.uploadDoorFile);

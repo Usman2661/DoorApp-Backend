@@ -73,10 +73,10 @@ exports.getSiteDoors = (req,res,next) => {
 exports.getSite = (req,res,next) => {
  
     const id = req.query.id;
-    Sites.find({_id:id})
-    .then(Site =>{
+    Sites.findById(id)
+    .then(Sites =>{
         res.status(200).json({
-            Site: Site
+            Site: Sites
       });
     })
     .catch(error=> {
@@ -85,3 +85,58 @@ exports.getSite = (req,res,next) => {
       });
     })
 }
+
+exports.updateSite = (req,res,next) => {
+ 
+    const id = req.body.id;
+    const SiteName = req.body.SiteName ;
+    const SiteAddressLine1 = req.body.SiteAddressLine1;
+    const SiteAddressLine2 = req.body.SiteAddressLine2;
+    const City = req.body.City;
+    const PostCode = req.body.PostCode;    
+    
+    Sites.updateOne({'_id': id },
+    {$set :{"SiteName":SiteName , "SiteAddressLine1":SiteAddressLine1, 'SiteAddressLine2':SiteAddressLine2,'City':City,'PostCode':PostCode}})
+    .then(site => {
+        res.status(200).json({
+                    site:site
+            });
+    })
+     .catch(err => {
+        res.status(500).json({
+            error:err
+          });
+    })
+}
+
+exports.getSiteWithMostDoors = (req,res,next) => {
+
+    Doors.aggregate([
+        {
+        $group: {
+            _id: '$SiteID',
+            count: {$sum: 1}
+        },   
+       },
+       {
+        $sort : {count : -1}
+       },
+       { 
+           $limit: 1 
+       }
+
+     ])
+     .then(site => {
+        res.status(200).json({
+                    site:site
+            });
+    })
+     .catch(err => {
+        res.status(500).json({
+            error:err
+          });
+    })
+     
+}
+
+
