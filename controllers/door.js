@@ -28,15 +28,15 @@ exports.createDoor = (req,res,next) => {
 }
 exports.getDoors = (req,res,next) => {
 
-    Doors.aggregate([{
-        $lookup:
-            {
-                from: 'sites',
-                localField: {$toObjectId: '$SiteID'},	
-                foreignField: '_id',
-                as: 'Door_Site'
-            }
-        }])
+    Doors.aggregate([
+        { "$addFields": { "SitesID": { "$toObjectId": "$SiteID" }}},
+        { "$lookup": {
+          "from": "sites",
+          "localField": "SitesID",
+          "foreignField": "_id",
+          "as": "Door_Site"
+        }}
+      ])
          .then(door =>{
             res.status(200).json({
             doors: door
