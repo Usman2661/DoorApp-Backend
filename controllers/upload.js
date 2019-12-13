@@ -38,8 +38,7 @@ exports.uploadFile = (req,res,next) => {
                     error: s3Err 
                 });
              }
-            if (data){
-                
+            if (data){       
                 fs.unlink(myfile, function (err) {
                     if (err) throw err;
                     console.log('File deleted!');

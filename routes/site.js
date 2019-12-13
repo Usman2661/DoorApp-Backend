@@ -10,7 +10,7 @@ router.get("/totalsites" , checkAuth , SiteController.totalSites);
 router.get("/sitedoors" , checkAuth , SiteController.getSiteDoors);
 router.get("/site" , checkAuth , SiteController.getSite);
 router.put("/updateSite" , checkAuth , SiteController.updateSite);
-router.get("/sitewithmostdoors" , SiteController.getSiteWithMostDoors);
+router.get("/sitewithmostdoors" , checkAuth, SiteController.getSiteWithMostDoors);
 
 
 module.exports = router;
