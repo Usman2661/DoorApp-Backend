@@ -15,11 +15,12 @@ router.post("/door" , checkAuth,uploadImage.saveToUploads, DoorController.create
 router.get("/doors" , checkAuth , DoorController.getDoors);
 router.delete("/door" , checkAuth, DoorController.deleteDoor);
 router.get("/door" , checkAuth, DoorController.getDoor);
-router.post("/DoorDocument" , DoorController.uploadDoorFile);
-router.get("/DoorDocument" , DoorController.getDoorDocuments);
+router.post("/DoorDocument" ,checkAuth, DoorController.uploadDoorFile);
+router.get("/DoorDocument" , checkAuth, DoorController.getDoorDocuments);
 router.get("/totalDoors" , checkAuth, DoorController.totalDoors);
 router.post("/upload" , checkAuth , multipartyMiddleware, upload.uploadFile);
-router.delete("/delete" , mydelete.deletefile);
+router.delete("/delete" , checkAuth, mydelete.deletefile);
+router.put("/updateDoor" ,checkAuth, DoorController.updateDoor);
 
 
 module.exports = router;

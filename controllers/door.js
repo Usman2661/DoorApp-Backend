@@ -131,3 +131,22 @@ exports.totalDoors = (req,res, next) => {
     })
 }
 
+exports.updateDoor = (req,res,next) => {
+    const id = req.body.id;
+    const DoorName = req.body.DoorName ;
+    const DoorLocation = req.body.DoorLocation;
+    
+    Doors.updateOne({'_id': id },
+    {$set :{"DoorName":DoorName , "DoorLocation":DoorLocation}})
+    .then(door => {
+        res.status(200).json({
+                    door:door
+            });
+    })
+     .catch(err => {
+        res.status(500).json({
+            error:err
+          });
+    })
+}
+
