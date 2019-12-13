@@ -138,4 +138,19 @@ exports.getSiteWithMostDoors = (req,res,next) => {
      
 }
 
+exports.deleteSite = (req,res,next) => {
+    
+    id = req.body.id;
+    Sites.deleteOne({_id:id})
+    .then(site =>{
+        res.status(200).json({
+            site: site
+      });
+    })
+    .catch(error=> {
+        res.status(500).json({
+            error: error
+      });
+    })
+}
 

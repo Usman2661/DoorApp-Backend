@@ -11,6 +11,6 @@ router.get("/sitedoors" , checkAuth , SiteController.getSiteDoors);
 router.get("/site" , checkAuth , SiteController.getSite);
 router.put("/updateSite" , checkAuth , SiteController.updateSite);
 router.get("/sitewithmostdoors" , checkAuth, SiteController.getSiteWithMostDoors);
-
+router.delete("/site" , checkAuth, SiteController.deleteSite);
 
 module.exports = router;
