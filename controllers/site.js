@@ -143,9 +143,17 @@ exports.deleteSite = (req,res,next) => {
     id = req.body.id;
     Sites.deleteOne({_id:id})
     .then(site =>{
-        res.status(200).json({
-            site: site
-      });
+        Doors.deleteMany({SiteID:id})
+        .then(sitedoor => {
+            res.status(200).json({
+                sitedoor: sitedoor
+          });
+        })
+        .catch(error => {
+            res.status(500).json({
+                error: error
+          });
+        })
     })
     .catch(error=> {
         res.status(500).json({
