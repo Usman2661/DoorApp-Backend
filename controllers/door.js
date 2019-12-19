@@ -132,21 +132,46 @@ exports.totalDoors = (req,res, next) => {
 }
 
 exports.updateDoor = (req,res,next) => {
-    const id = req.body.id;
-    const DoorName = req.body.DoorName ;
-    const DoorLocation = req.body.DoorLocation;
-    
-    Doors.updateOne({'_id': id },
-    {$set :{"DoorName":DoorName , "DoorLocation":DoorLocation}})
-    .then(door => {
-        res.status(200).json({
-                    door:door
-            });
-    })
-     .catch(err => {
-        res.status(500).json({
-            error:err
-          });
-    })
+
+    if (req.file){
+        const id = req.body.id;
+        const DoorName = req.body.DoorName ;
+        const DoorLocation = req.body.DoorLocation;
+        
+        const Image = "http://localhost:3000/uploads/" + req.file.filename
+
+
+        Doors.updateOne({'_id': id },
+        {$set :{"DoorName":DoorName , "DoorLocation":DoorLocation, "Image":Image}})
+        .then(door => {
+            res.status(200).json({
+                        door:door
+                });
+        })
+         .catch(err => {
+            res.status(500).json({
+                error:err
+              });
+        })
+    }
+    else {
+        const id = req.body.id;
+        const DoorName = req.body.DoorName ;
+        const DoorLocation = req.body.DoorLocation;
+        
+        Doors.updateOne({'_id': id },
+        {$set :{"DoorName":DoorName , "DoorLocation":DoorLocation}})
+        .then(door => {
+            res.status(200).json({
+                        door:door
+                });
+        })
+         .catch(err => {
+            res.status(500).json({
+                error:err
+              });
+        })
+    }
+  
 }
 

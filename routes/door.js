@@ -20,7 +20,7 @@ router.get("/DoorDocument" , checkAuth, DoorController.getDoorDocuments);
 router.get("/totalDoors" , checkAuth, DoorController.totalDoors);
 router.post("/upload" , checkAuth , multipartyMiddleware, upload.uploadFile);
 router.delete("/delete" , checkAuth, mydelete.deletefile);
-router.put("/updateDoor" ,checkAuth, DoorController.updateDoor);
+router.put("/updateDoor" ,checkAuth, uploadImage.saveToUploads, DoorController.updateDoor);
 
 
 module.exports = router;

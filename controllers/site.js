@@ -88,25 +88,51 @@ exports.getSite = (req,res,next) => {
 
 exports.updateSite = (req,res,next) => {
  
-    const id = req.body.id;
-    const SiteName = req.body.SiteName ;
-    const SiteAddressLine1 = req.body.SiteAddressLine1;
-    const SiteAddressLine2 = req.body.SiteAddressLine2;
-    const City = req.body.City;
-    const PostCode = req.body.PostCode;    
-    
-    Sites.updateOne({'_id': id },
-    {$set :{"SiteName":SiteName , "SiteAddressLine1":SiteAddressLine1, 'SiteAddressLine2':SiteAddressLine2,'City':City,'PostCode':PostCode}})
-    .then(site => {
-        res.status(200).json({
-                    site:site
-            });
-    })
-     .catch(err => {
-        res.status(500).json({
-            error:err
-          });
-    })
+
+    if (req.file){
+        const id = req.body.id;
+        const SiteName = req.body.SiteName ;
+        const SiteAddressLine1 = req.body.SiteAddressLine1;
+        const SiteAddressLine2 = req.body.SiteAddressLine2;
+        const City = req.body.City;
+        const PostCode = req.body.PostCode;   
+        const Image = "http://localhost:3000/uploads/" + req.file.filename
+
+        Sites.updateOne({'_id': id },
+        {$set :{"SiteName":SiteName , "SiteAddressLine1":SiteAddressLine1, 'SiteAddressLine2':SiteAddressLine2,'City':City,'PostCode':PostCode,"Image":Image}})
+        .then(site => {
+            res.status(200).json({
+                        site:site
+                });
+        })
+         .catch(err => {
+            res.status(500).json({
+                error:err
+              });
+        })
+    }
+    else{
+        const id = req.body.id;
+        const SiteName = req.body.SiteName ;
+        const SiteAddressLine1 = req.body.SiteAddressLine1;
+        const SiteAddressLine2 = req.body.SiteAddressLine2;
+        const City = req.body.City;
+        const PostCode = req.body.PostCode;    
+        
+        Sites.updateOne({'_id': id },
+        {$set :{"SiteName":SiteName , "SiteAddressLine1":SiteAddressLine1, 'SiteAddressLine2':SiteAddressLine2,'City':City,'PostCode':PostCode}})
+        .then(site => {
+            res.status(200).json({
+                        site:site
+                });
+        })
+         .catch(err => {
+            res.status(500).json({
+                error:err
+              });
+        })
+    }
+   
 }
 
 exports.getSiteWithMostDoors = (req,res,next) => {
